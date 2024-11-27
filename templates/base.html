@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  {% block title %}<title>ToDo app</title>{% endblock %}
+  <meta charset="UTF-8">
+  <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" crossorigin="anonymous">
+  {% load static %}
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-2 py-3">
+        {% include 'includes/sidebar.html' %}
+      </nav>
+      <moin class="col-10 py-3">
+        {% block content %}
+        {% endblock %}
+      </moin>
+    </div>
+  </div>
+</body>
+</html>
