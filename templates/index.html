@@ -16,22 +16,23 @@
     {% for task in tasks %}
       <li class="list-group-item d-flex justify-content-between align-items-center">
         <div>
-          <h1 style="font-weight: bold; font-size: 20px">{{ task.content }}</h1>
-          {% if task.is_done %}
-            <span class="badge bg-success" style="font-size: 20px; color: white">Done</span>
-          {% else %}
-            <span class="badge bg-danger" style="color: white">Not done</span>
-          {% endif %}
-          <br>
-          <small class="text-info">Created at: {{ task.datetime }}</small>
+          <div class="d-flex align-items-center">
+            <h1 style="font-weight: bold; font-size: 20px; margin-right: 10px;">{{ task.content }}</h1>
+            {% if task.is_done %}
+              <span class="badge bg-success" style="font-size: 16px; color: white;">Done</span>
+            {% else %}
+              <span class="badge bg-danger" style="font-size: 16px; color: white;">Not Done</span>
+            {% endif %}
+          </div>
+          <small class="text-info ">Created: {{ task.datetime }}</small>
           {% if task.deadline %}
-            <small class="text-danger d-block">Deadline: {{ task.deadline|date:"M d, Y, H:i" }}</small>
+            <small class="text-danger">Deadline: {{ task.deadline|date:"M d, Y, H:i" }}</small>
           {% endif %}
           {% if task.tags.all %}
             <small class="d-block">Tags: {{ task.tags.all|join:", " }}</small>
           {% endif %}
-          <a class="text-white badge bg-primary" href="{% url 'app:update_task' pk=task.id %}" style="font-size: 24px">Update</a>
-          <a class="text-white badge bg-danger" href="{% url 'app:delete_task' pk=task.id %}" style="font-size: 24px; margin-top: 10px">Delete</a>
+          <a class="text-white badge bg-primary" href="{% url 'app:update_task' pk=task.id %}" style="font-size: 20px">Update</a>
+          <a class="text-white badge bg-danger" href="{% url 'app:delete_task' pk=task.id %}" style="font-size: 20px; margin-top: 10px">Delete</a>
         </div>
         <a href="{% url 'app:do_task' task.pk %}" class="btn btn-sm {% if task.is_done %}btn-secondary{% else %}btn-success{% endif %}">
           {% if task.is_done %}Undo{% else %}Complete{% endif %}
